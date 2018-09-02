@@ -18,7 +18,7 @@ Bitmap::~Bitmap()
     delete[] pixels;
 }
 
-void Bitmap::Clean()
+void Bitmap::Clear()
 {
     for (register int i = 0; i < width * height * 4; i += 4) {
         pixels[i] = 0;

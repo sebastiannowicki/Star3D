@@ -11,7 +11,7 @@ public:
     sf::Sprite GetSprite();
     ~Bitmap();
     void DrawPixel(int x, int y, sf::Uint8 a, sf::Uint8 r, sf::Uint8 g, sf::Uint8 b);
-    void Clean();
+    void Clear();
 
 private: 
     sf::Uint8 *pixels;

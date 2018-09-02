@@ -45,10 +45,10 @@ float Stars3D::Random0to1()
 
 void Stars3D::Render(Bitmap *bmp, float delta) 
 {
-    window->clear(sf::Color(0, 0, 0, 255));
     auto screenSize = window->getSize();
     float halfWidth = screenSize.x /2.0f;
     float hanfHeight = screenSize.y / 2.0f;
+    bmp->Clear();
 
     for (int i = 0; i < numStars; i++)
     {
@@ -59,10 +59,10 @@ void Stars3D::Render(Bitmap *bmp, float delta)
             InitStar(i); 
         }
 
-        int x = (int)((starX[i] * halfWidth) + halfWidth);
-        int y = (int)((starY[i] * hanfHeight) + hanfHeight);
+        int x = (int)(((starX[i] / starZ[i]) * halfWidth) + halfWidth);
+        int y = (int)(((starY[i] / starZ[i]) * hanfHeight) + hanfHeight);
 
-        if((x < 0 || x >= screenSize.x) || (y < 0 || x >= screenSize.y))
+        if((x < 0 || x >= screenSize.x) || (y < 0 || y  >= screenSize.y))
         {
             InitStar(i);
         }
