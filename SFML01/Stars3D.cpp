@@ -2,6 +2,7 @@
 #include "Stars3D.h"
 #include "Bitmap.h"
 #include <SFML/Graphics.hpp>
+#include <math.h>
 
 #include <cmath>
 #include <ctime>
@@ -45,6 +46,8 @@ float Stars3D::Random0to1()
 
 void Stars3D::Render(Bitmap *bmp, float delta) 
 {
+    float tanHalfFOV = (float)tan(3.1418 * 45/180);
+
     auto screenSize = window->getSize();
     float halfWidth = screenSize.x /2.0f;
     float hanfHeight = screenSize.y / 2.0f;
@@ -59,8 +62,8 @@ void Stars3D::Render(Bitmap *bmp, float delta)
             InitStar(i); 
         }
 
-        int x = (int)(((starX[i] / starZ[i]) * halfWidth) + halfWidth);
-        int y = (int)(((starY[i] / starZ[i]) * hanfHeight) + hanfHeight);
+        int x = (int)(((starX[i] / (starZ[i] * tanHalfFOV)) * halfWidth) + halfWidth);
+        int y = (int)(((starY[i] / (starZ[i] * tanHalfFOV)) * hanfHeight) + hanfHeight);
 
         if((x < 0 || x >= screenSize.x) || (y < 0 || y  >= screenSize.y))
         {
